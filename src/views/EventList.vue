@@ -19,14 +19,13 @@ export default {
       events: null
     }
   },
-  created() {
-    EventService.getEvents()
-      .then((response) => {
-        this.events = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  async created() {
+    try {
+      const eventsData = await EventService.getEvents()
+      this.events = eventsData.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>
